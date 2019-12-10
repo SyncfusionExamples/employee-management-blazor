@@ -1,0 +1,63 @@
+﻿@page "/employee/delete/{empId}"
+@inject HttpClient Http
+@inject Microsoft.AspNetCore.Components.NavigationManager navigation
+
+
+<h2>Delete</h2>
+<h3>Are you sure you want to delete employee with id : @empId</h3>
+<br />
+
+<div class="col-md-4">
+    <table class="table">
+        <tr>
+            <td>Name</td>
+            <td>@emp.Name</td>
+        </tr>
+        <tr>
+            <td>Designation</td>
+            <td>@emp.Designation</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>@emp.Email</td>
+        </tr>
+        <tr>
+            <td>Location</td>
+            <td>@emp.Location</td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>@emp.PhoneNumber</td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <input type="submit" value="Delete" @onclick="@(async () => await Delete())" class="btn btn-default" />
+        <input type="submit" value="Cancel" @onclick="@cancel" class="btn" />
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public string empId { get; set; }
+
+    Employee emp = new Employee();
+
+    protected override async Task OnInitializedAsync()
+    {
+        emp = await Http.GetJsonAsync<Employee>
+        ("/api/Employee/Details/" + Convert.ToInt64(empId));
+    }
+
+    protected async Task Delete()
+    {
+        await Http.DeleteAsync("api/Employee/Delete/" + Convert.ToInt64(empId));
+        navigation.NavigateTo("/employee");
+    }
+
+    void cancel()
+    {
+        navigation.NavigateTo("/employee");
+    }
+
+}
