@@ -1,11 +1,10 @@
 # Employee Management
 
-This repository contains the employee management application, built with Blazor Preview 9 and Entity Framework 3.0 to illustrate performing CRUD actions.
+This repository contains the employee management application, built with Blazor WASM application and Entity Framework 7.0 to illustrate performing CRUD actions.
 
 ## Prerequisites
 
 * Visual Studio 2022
-* .NET Core 3.0
 * SQL Server 2017 
 
 
