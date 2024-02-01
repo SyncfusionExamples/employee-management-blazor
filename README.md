@@ -5,8 +5,7 @@ This repository contains the employee management application, built with Blazor 
 ## Prerequisites
 
 * Visual Studio 2022
-* SQL Server 2017 
-
+* SQL Server 2019
 
 ## How to run the project
 
